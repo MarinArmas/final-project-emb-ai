@@ -1,0 +1,24 @@
+"""
+Emotion detector 
+"""
+# Import the requests library
+import requests
+
+# Define the "emotion_detector" function, which receives as an argument "text_to_analyze"
+def emotion_detector(text_to_analyze):
+    """
+    emotion_detector function
+    Input: text_to_analyze
+    Output: response.text
+    """
+    # Define the Watdon NLP URL
+    url = 'https://sn-watson-emotion.labs.skills.network/v1/watson.runtime.nlp.v1/NlpService/EmotionPredict'
+    # Define the headers
+    header = {"grpc-metadata-mm-model-id": "emotion_aggregated-workflow_lang_en_stock"}
+    myobj = { "raw_document": { "text": text_to_analyse } }
+
+    # Create a request and store the response in "response" variable
+    response = requests.post(url, json = myobj, headers = header)
+
+    # Return the response as text
+    return response.text
